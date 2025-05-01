@@ -23,7 +23,7 @@ The application is built using:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/replit/openvista.git
+   git clone https://github.com/Samkaypro/OpenVistaAI.git
    cd openvista
    ```
 

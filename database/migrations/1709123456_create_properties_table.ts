@@ -2,7 +2,7 @@ import { BaseSchema } from '@adonisjs/lucid/schema'
 
 /**
  * Migration: Create Properties Table
- * 
+ *
  * Creates the main properties table with PostGIS support for storing
  * and querying geospatial data. The table includes fields for:
  * - Basic property information (title, description, price)
@@ -26,24 +26,33 @@ export default class extends BaseSchema {
       table.text('description').comment('Detailed property description')
       table.decimal('price', 12, 2).notNullable().comment('Property price in USD')
       table.decimal('acreage', 10, 2).notNullable().comment('Property size in acres')
-      table.string('property_type').notNullable().comment('Type of property (e.g., farm, ranch, timber)')
+      table
+        .string('property_type')
+        .notNullable()
+        .comment('Type of property (e.g., farm, ranch, timber)')
       table.string('land_use').comment('Land use classification')
-      
+
       // Address and location fields
       table.string('address').comment('Property street address')
       table.string('city').comment('City/municipality name')
       table.string('state', 2).comment('State code (2 letters)')
       table.string('zip_code', 10).comment('ZIP/Postal code')
       table.string('county').comment('County name')
-      
+
       // Geographic coordinates (WGS84)
       table.decimal('latitude', 10, 8).comment('Property latitude')
       table.decimal('longitude', 11, 8).comment('Property longitude')
-      
+
       // Property features and rights
       table.string('zoning').comment('Zoning classification')
-      table.boolean('water_rights').defaultTo(false).comment('Whether property includes water rights')
-      table.boolean('mineral_rights').defaultTo(false).comment('Whether property includes mineral rights')
+      table
+        .boolean('water_rights')
+        .defaultTo(false)
+        .comment('Whether property includes water rights')
+      table
+        .boolean('mineral_rights')
+        .defaultTo(false)
+        .comment('Whether property includes mineral rights')
       table.boolean('road_access').defaultTo(false).comment('Whether property has road access')
       table.json('utilities').defaultTo('[]').comment('Available utilities (array of strings)')
       table.string('flood_zone').comment('FEMA flood zone designation')
@@ -79,4 +88,4 @@ export default class extends BaseSchema {
   async down() {
     this.schema.dropTable(this.tableName)
   }
-} 
+}

@@ -1,13 +1,13 @@
 /**
  * OpenVista AI API Routes
- * 
+ *
  * This file defines all HTTP routes for the OpenVista AI application.
  * The API is organized into several sections:
  * - Health check endpoint
  * - Property management (CRUD operations)
  * - Spatial property search
  * - GIS data access
- * 
+ *
  * All routes under /api require authentication.
  */
 
@@ -25,7 +25,7 @@ router
   .group(() => {
     /**
      * Properties Resource Routes
-     * 
+     *
      * GET    /properties      - List all properties
      * POST   /properties      - Create a new property
      * GET    /properties/:id  - Get a specific property
@@ -38,7 +38,7 @@ router
 
     /**
      * Spatial Property Search Routes
-     * 
+     *
      * GET  /properties/nearby          - Find properties within radius of point
      * POST /properties/within-polygon  - Find properties within polygon
      */
@@ -49,7 +49,7 @@ router
      * GIS Data Routes
      * Provide access to geographic and environmental data
      */
-    
+
     // Get state boundaries with GeoJSON geometry
     router.get('gis/states', async ({ response }) => {
       const db = new Database()
