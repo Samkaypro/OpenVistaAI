@@ -1,7 +1,12 @@
 {
   "extends": "@adonisjs/tsconfig/tsconfig.app.json",
   "compilerOptions": {
+    "moduleResolution": "node16",
+    "outDir": "./build",
     "rootDir": "./",
-    "outDir": "./build"
+    "paths": {
+      "#*": ["./app/*"],
+      "#config/*": ["./config/*"]
+    }
   }
 }

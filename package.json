@@ -1,70 +1,52 @@
 {
   "name": "openvista",
-  "version": "0.0.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "OpenVista AI - Real Estate Analysis Platform",
   "type": "module",
-  "license": "UNLICENSED",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "start": "node bin/server.js",
+    "dev": "node ace serve --watch",
     "build": "node ace build",
-    "dev": "node ace serve --hmr",
+    "start": "node server.js",
     "test": "node ace test",
-    "lint": "eslint .",
+    "lint": "eslint . --ext=.ts",
     "format": "prettier --write .",
-    "typecheck": "tsc --noEmit"
-  },
-  "imports": {
-    "#controllers/*": "./app/controllers/*.js",
-    "#exceptions/*": "./app/exceptions/*.js",
-    "#models/*": "./app/models/*.js",
-    "#mails/*": "./app/mails/*.js",
-    "#services/*": "./app/services/*.js",
-    "#listeners/*": "./app/listeners/*.js",
-    "#events/*": "./app/events/*.js",
-    "#middleware/*": "./app/middleware/*.js",
-    "#validators/*": "./app/validators/*.js",
-    "#providers/*": "./providers/*.js",
-    "#policies/*": "./app/policies/*.js",
-    "#abilities/*": "./app/abilities/*.js",
-    "#database/*": "./database/*.js",
-    "#start/*": "./start/*.js",
-    "#tests/*": "./tests/*.js",
-    "#config/*": "./config/*.js"
-  },
-  "devDependencies": {
-    "@adonisjs/assembler": "^7.8.2",
-    "@adonisjs/eslint-config": "^2.0.0",
-    "@adonisjs/prettier-config": "^1.4.0",
-    "@adonisjs/tsconfig": "^1.4.0",
-    "@japa/api-client": "^3.0.3",
-    "@japa/assert": "^4.0.1",
-    "@japa/plugin-adonisjs": "^4.0.0",
-    "@japa/runner": "^4.2.0",
-    "@swc/core": "1.10.7",
-    "@types/luxon": "^3.6.2",
-    "@types/node": "^22.13.2",
-    "eslint": "^9.20.1",
-    "hot-hook": "^0.4.0",
-    "pino-pretty": "^13.0.0",
-    "prettier": "^3.5.0",
-    "ts-node-maintained": "^10.9.5",
-    "typescript": "~5.7"
+    "setup:db": "node scripts/setup/database.js",
+    "db:migrate": "npm run db:migrate -w packages/database",
+    "ingest:tiger": "node scripts/data/ingest-tiger.js",
+    "ingest:usgs": "node scripts/data/ingest-usgs.js",
+    "ingest:osm": "node scripts/data/ingest-osm.js",
+    "test:db": "node scripts/setup/test-db.js"
   },
   "dependencies": {
-    "@adonisjs/auth": "^9.3.1",
-    "@adonisjs/core": "^6.17.2",
-    "@adonisjs/cors": "^2.2.1",
-    "@adonisjs/lucid": "^21.6.0",
-    "@vinejs/vine": "^3.0.0",
-    "luxon": "^3.6.1",
-    "pg": "^8.15.6",
-    "reflect-metadata": "^0.2.2"
+    "@adonisjs/core": "^6.6.0",
+    "@adonisjs/lucid": "^20.5.1",
+    "@adonisjs/auth": "^9.2.0",
+    "@adonisjs/tsconfig": "^1.4.0",
+    "@types/node": "^20.11.24",
+    "typescript": "^5.3.3",
+    "dotenv": "^16.4.5",
+    "winston": "^3.11.0",
+    "pg": "^8.11.3",
+    "luxon": "^3.4.4"
   },
-  "hotHook": {
-    "boundaries": [
-      "./app/controllers/**/*.ts",
-      "./app/middleware/*.ts"
-    ]
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.12",
+    "@types/luxon": "^3.4.2",
+    "@types/pg": "^8.11.2"
   },
-  "prettier": "@adonisjs/prettier-config"
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "",
+  "license": "MIT"
 }
